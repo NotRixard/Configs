@@ -1,4 +1,4 @@
-#Configs
+# Configs
 
 My Personal Configs i keep on GitHub to Share/Archive
 
