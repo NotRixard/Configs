@@ -1,0 +1,92 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 26,
+    "spacing": 8,
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "wireplumber",
+        "custom/battery",
+        "network",
+        "bluetooth",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "sort-by-number": true,
+        "all-outputs": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip": true,
+        "tooltip-format": "{:%A, %d %B %Y}"
+    },
+
+    "wireplumber": {
+        "format": "VOL {volume}%",
+        "max-volume": 100,
+        "scroll-step": 5,
+        "tooltip": false
+    },
+
+    "custom/battery": {
+        "exec": "if ls /sys/class/power_supply/BAT* >/dev/null 2>&1; then cat /sys/class/power_supply/BAT*/capacity | head -1; fi",
+        "interval": 60,
+        "format": "BAT {}%"
+    },
+
+    "network": {
+        "format": "",
+        "format-ethernet": "ETH",
+        "format-wifi": "{icon}",
+        "format-disconnected": "OFF",
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+
+    "bluetooth": {
+        "format": "BT",
+        "format-disabled": "BT OFF",
+        "format-connected": "BT",
+        "on-click": "blueman-manager",
+        "tooltip-format": "{controller_alias}\n{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\n{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 12
+    }
+}
