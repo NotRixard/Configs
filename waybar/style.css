@@ -1,0 +1,65 @@
+@define-color foreground #ffffff;
+@define-color foreground-inactive #777777;
+@define-color background #000000;
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    color: @foreground;
+    background-color: @background;
+}
+
+/* --- WORKSPACES -------------------------------------------------- */
+
+#workspaces {
+margin-left: 0px;
+}
+
+#workspaces button {
+color: @foreground;
+background-color: transparent;
+border: none;
+border-radius: 0;
+padding: 0 6px;
+margin: 0;
+}
+
+#workspaces button.active {
+color: #000000;
+background-color: #ffffff;
+}
+
+#workspaces button:hover {
+color: #ffffff;
+background-color: #333333;
+}
+
+/* --- CENTER CLOCK ------------------------------------------------ */
+
+#clock {
+color: #ffffff;
+padding: 0;
+margin: 0;
+}
+
+/* --- RIGHT SIDE -------------------------------------------------- */
+
+#wireplumber,
+#battery,
+#language,
+#network,
+#bluetooth,
+#idle_inhibitor,
+#tray {
+color: #ffffff;
+margin-right: 14px;
+}
+
+#tray {
+margin-right: 8px;
+}
