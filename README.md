@@ -1,5 +1,5 @@
 # Configs
 
-My Personal Configs i keep on GitHub to Share/Archive
+My Personal Configs i keep on GitHub to Share/Archive, Feel free to grab anything if you need it.
 
-Feel free to grab anything if you need it.
+For themes refer to: https://github.com/NotRixard/Themes
