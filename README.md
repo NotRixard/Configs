@@ -23,8 +23,10 @@ sudo pacman -S --needed \
   mako \
   easyeffects \
   gawk
-
+```
+```bash
 yay -S --needed \
   hyprpicker \
   tofi \
   cliphist
+```
