@@ -6,6 +6,7 @@ For themes refer to: https://github.com/NotRixard/Themes
 
 Prerequisites:
 
+```bash
 sudo pacman -S --needed \
   hyprland \
   mesa lib32-mesa libva-mesa-driver \
