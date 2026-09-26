@@ -8,7 +8,7 @@
 
 ---@module 'hl'
 
--- --- SYSTEM SETTINGS (AMD RX 570) -------------------------------------------------
+-- --- SYSTEM SETTINGS (AMD) -------------------------------------------------
 
 hl.env("LIBVA_DRIVER_NAME", "radeonsi")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
@@ -52,7 +52,7 @@ hl.config({
 
 hl.config({
     animations = {
-        enabled = true,
+        enabled = false,
     },
 })
 
@@ -62,6 +62,15 @@ hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 5, bezier = "d
 hl.config({
     decoration = {
         rounding = 0,
+        blur = {
+            enabled = false,
+            size = 1,
+            passes = 3,
+            vibrancy = 0.15,
+            contrast = 1.0,
+            xray = false,
+            new_optimizations = true
+        },
     },
 })
 
@@ -74,6 +83,7 @@ hl.config({
         sensitivity = 0,
         touchpad = {
             natural_scroll = false,
+            disable_while_typing = false
         },
     },
 })
@@ -89,7 +99,7 @@ hl.bind(mod .. " + " .. "mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Toggle system tray overlay window
 
-hl.bind(mod .. " + " .. "z", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
+hl.bind(mod .. " + " .. "r", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 
 -- Terminal & Apps
 
@@ -116,20 +126,25 @@ hl.bind(mod .. " + " .. "right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mod .. " + " .. "up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mod .. " + " .. "down", hl.dsp.focus({ direction = "down" }))
 
--- Screenshot | Loads into Cliphist
+-- Screenshot Logic
 
-hl.bind("Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | tee ~/Pictures/screenshot-$(date +%s).png | wl-copy"))
-hl.bind("SHIFT" .. " + " .. "Print", hl.dsp.exec_cmd("grim - | tee ~/Pictures/screenshot-$(date +%s).png | wl-copy"))
+hl.bind(mod .. " + " .. "z", hl.dsp.exec_cmd("pkill slurp || grim -g \"$(slurp)\" ~/Pictures/last-screenshot.png && wl-copy < ~/Pictures/last-screenshot.png"))
+hl.bind(mod .. " + " .. "SHIFT" .. " + " .. "z", hl.dsp.exec_cmd("grim - | tee ~/Pictures/screenshot-$(date +%s).png | wl-copy"))
+
+hl.bind("print", hl.dsp.exec_cmd("pkill slurp || grim -g \"$(slurp)\" ~/Pictures/last-screenshot.png && wl-copy < ~/Pictures/last-screenshot.png"))
+hl.bind("SHIFT" .. " + " .. "print", hl.dsp.exec_cmd("grim - | tee ~/Pictures/screenshot-$(date +%s).png | wl-copy"))
+
+hl.bind(mod .. " + " .. "s", hl.dsp.exec_cmd("pkill swappy || swappy -f ~/Pictures/last-screenshot.png"))
 
 -- --- WORKSPACES ------------------------------------------------------------------
 
 -- Toggle the hidden scratchpad view on/off
 
-hl.bind(mod .. " + " .. "s", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mod .. " + " .. "v", hl.dsp.workspace.toggle_special("magic"))
 
--- Move the currently active window into the scratchpad (hides it)
+-- Move the currently active window into the scratchpad
 
-hl.bind(mod .. " + " .. "SHIFT" .. " + " .. "s", hl.dsp.window.move({ workspace = "special:magic" }, { follow = false }))
+hl.bind(mod .. " + " .. "SHIFT" .. " + " .. "v", hl.dsp.window.move({ workspace = "special:magic" }, { follow = false }))
 
 hl.bind(mod .. " + " .. 1, hl.dsp.focus({ workspace = 1 }))
 hl.bind(mod .. " + " .. 2, hl.dsp.focus({ workspace = 2 }))
@@ -190,16 +205,23 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name  = "float_1",
+    name  = "no_float",
     match = {
         workspace = "special:magic",
     },
-    float = true,
+    float = false,
 })
+
+--hl.window_rule({
+    --name = "thunar_opacity",
+    --match = { class = "thunar" },
+    --opacity = "0.85 0.85",
+--})
 
 -- --- STARTUP / AUTO-EXEC -----------------------------------------------------------
 
 hl.on("hyprland.start", function()
+hl.exec_cmd("playerctld daemon")
 hl.exec_cmd("waybar")
 hl.exec_cmd("blueman-applet")
 hl.exec_cmd("nm-applet")
@@ -208,4 +230,6 @@ hl.exec_cmd("mako")
 hl.exec_cmd("wl-paste --type text --watch cliphist store")
 hl.exec_cmd("wl-paste --type image --watch cliphist store")
 hl.exec_cmd("easyeffects --gapplication-service")
+hl.exec_cmd("solaar -w hide")
+hl.exec_cmd("hyprpaper")
 end)
