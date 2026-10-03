@@ -60,17 +60,20 @@ hl.animation({ leaf = "windows", enabled = false })
 hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 5, bezier = "default", style = "fade" })
 
 hl.config({
-    decoration = {
-        rounding = 0,
-        blur = {
-            enabled = false,
-            size = 1,
-            passes = 3,
-            vibrancy = 0.15,
-            contrast = 1.0,
-            xray = false,
-            new_optimizations = true
+    general = {
+        gaps_in = 0,
+        gaps_out = 0,
+        border_size = 1,
+        resize_on_border = true,
+        layout = "dwindle",
+        col = {
+            active_border = "rgba(ffffffee)",
+            inactive_border = "rgba(595959ee)",
         },
+    },
+
+    -- decoration = {
+        -- screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
     },
 })
 
