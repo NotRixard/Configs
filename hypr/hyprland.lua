@@ -38,9 +38,19 @@ hl.config({
           inactive_border = "rgba(595959ee)",
         },
     },
+})
 
+--hl.config({
+    --decoration = {
+        --screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
+    --},
+--})
+
+hl.config({
     decoration = {
-        screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
+        blur = {
+            enabled = false,
+        },
     },
 })
 
