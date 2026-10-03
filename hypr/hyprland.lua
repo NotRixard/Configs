@@ -38,6 +38,10 @@ hl.config({
           inactive_border = "rgba(595959ee)",
         },
     },
+
+    decoration = {
+        screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
+    },
 })
 
 hl.config({
@@ -58,24 +62,6 @@ hl.config({
 
 hl.animation({ leaf = "windows", enabled = false })
 hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 5, bezier = "default", style = "fade" })
-
-hl.config({
-    general = {
-        gaps_in = 0,
-        gaps_out = 0,
-        border_size = 1,
-        resize_on_border = true,
-        layout = "dwindle",
-        col = {
-            active_border = "rgba(ffffffee)",
-            inactive_border = "rgba(595959ee)",
-        },
-    },
-
-    -- decoration = {
-        -- screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
-    -- },
-})
 
 -- --- INPUT SETTINGS --------------------------------------------------------------
 
@@ -235,4 +221,5 @@ hl.exec_cmd("wl-paste --type image --watch cliphist store")
 hl.exec_cmd("easyeffects --gapplication-service")
 hl.exec_cmd("solaar -w hide")
 hl.exec_cmd("hyprpaper")
+hl.exec_cmd("hypridle")
 end)
