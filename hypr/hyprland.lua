@@ -74,7 +74,7 @@ hl.config({
 
     -- decoration = {
         -- screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
-    },
+    -- },
 })
 
 -- --- INPUT SETTINGS --------------------------------------------------------------
