@@ -1,4 +1,3 @@
-
 --  _   _  __   __  ____    ____    _          _      _   _  ____
 -- | | | | \ \ / / |  _ \  |  _ \  | |        / \    | \ | ||  _ \
 -- | |_| |  \ V /  | |_) | | |_) | | |       / _ \   |  \| || | | |
@@ -35,15 +34,15 @@ hl.config({
         layout = "dwindle",
         col = {
             active_border = "rgba(ffffffee)",
-          inactive_border = "rgba(595959ee)",
+            inactive_border = "rgba(595959ee)",
         },
     },
 })
 
 --hl.config({
-    --decoration = {
-        --screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
-    --},
+--    decoration = {
+--        screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
+--    },
 --})
 
 hl.config({
@@ -57,10 +56,10 @@ hl.config({
 hl.config({
     misc = {
         force_default_wallpaper = 0,
-            disable_hyprland_logo = true,
-            disable_splash_rendering = true,
-            background_color = "rgb(000000)",
-          vrr = 1,
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
+        background_color = "rgb(000000)",
+        vrr = 1,
     },
 })
 
@@ -196,24 +195,24 @@ hl.window_rule({
 })
 
 --hl.window_rule({
-    --name = "thunar_opacity",
-    --match = { class = "thunar" },
-    --opacity = "0.85 0.85",
+--    name = "thunar_opacity",
+--    match = { class = "thunar" },
+--    opacity = "0.85 0.85",
 --})
 
 -- --- STARTUP / AUTO-EXEC -----------------------------------------------------------
 
 hl.on("hyprland.start", function()
-hl.exec_cmd("playerctld daemon")
-hl.exec_cmd("waybar")
-hl.exec_cmd("blueman-applet")
-hl.exec_cmd("nm-applet")
-hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
-hl.exec_cmd("mako")
-hl.exec_cmd("wl-paste --type text --watch cliphist store")
-hl.exec_cmd("wl-paste --type image --watch cliphist store")
-hl.exec_cmd("easyeffects --gapplication-service")
-hl.exec_cmd("solaar -w hide")
-hl.exec_cmd("hyprpaper")
-hl.exec_cmd("hypridle")
+    hl.exec_cmd("playerctld daemon")
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("blueman-applet")
+    hl.exec_cmd("nm-applet")
+    hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
+    hl.exec_cmd("mako")
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("easyeffects --gapplication-service")
+    hl.exec_cmd("solaar -w hide")
+    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("hypridle")
 end)
