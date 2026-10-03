@@ -41,7 +41,7 @@ hl.config({
 
 --hl.config({
 --    decoration = {
---        screen_shader = "/home/rixard/.config/hypr/shaders/vibrance.glsl",
+--        screen_shader = "/home/CHANGEME/.config/hypr/shaders/vibrance.glsl",
 --    },
 --})
 
