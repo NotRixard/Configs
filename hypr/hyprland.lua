@@ -127,10 +127,10 @@ hl.bind(mod .. " + " .. "down", hl.dsp.focus({ direction = "down" }))
 
 -- Screenshot Logic
 
-hl.bind(mod .. " + " .. "z", hl.dsp.exec_cmd("pkill slurp || grim -g \"$(slurp)\" ~/Pictures/last-screenshot.png && wl-copy < ~/Pictures/last-screenshot.png"))
+hl.bind(mod .. " + " .. "z", hl.dsp.exec_cmd("pkill slurp || { grim -g \"$(slurp)\" ~/Pictures/last-screenshot.png && wl-copy < ~/Pictures/last-screenshot.png; }"))
 hl.bind(mod .. " + " .. "SHIFT" .. " + " .. "z", hl.dsp.exec_cmd("grim - | tee ~/Pictures/screenshot-$(date +%s).png | wl-copy"))
 
-hl.bind("print", hl.dsp.exec_cmd("pkill slurp || grim -g \"$(slurp)\" ~/Pictures/last-screenshot.png && wl-copy < ~/Pictures/last-screenshot.png"))
+hl.bind("print", hl.dsp.exec_cmd("pkill slurp || { grim -g \"$(slurp)\" ~/Pictures/last-screenshot.png && wl-copy < ~/Pictures/last-screenshot.png; }"))
 hl.bind("SHIFT" .. " + " .. "print", hl.dsp.exec_cmd("grim - | tee ~/Pictures/screenshot-$(date +%s).png | wl-copy"))
 
 hl.bind(mod .. " + " .. "s", hl.dsp.exec_cmd("pkill swappy || swappy -f ~/Pictures/last-screenshot.png"))
