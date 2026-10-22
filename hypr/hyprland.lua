@@ -127,7 +127,6 @@ hl.bind(mod .. " + " .. "down", hl.dsp.focus({ direction = "down" }))
 -- Screenshot Logic
 
 local region = [[pkill slurp || { f="$HOME/Pictures/screenshot-$(date +%s).png"; grim -g "$(slurp -b '#00000090' -c '#ffffff' -s 'ffffff05' -w 1)" "$f" && wl-copy < "$f" && cp "$f" "$HOME/Pictures/last-screenshot.png"; }]]
--- local region = [[pkill slurp || { f="$HOME/Pictures/screenshot-$(date +%s).png"; grim -g "$(slurp)" "$f" && wl-copy < "$f" && cp "$f" "$HOME/Pictures/last-screenshot.png"; }]]
 local full   = [[f="$HOME/Pictures/screenshot-$(date +%s).png"; grim "$f" && wl-copy < "$f" && cp "$f" "$HOME/Pictures/last-screenshot.png"]]
 
 hl.bind(mod .. " + z", hl.dsp.exec_cmd(region))
@@ -197,12 +196,6 @@ hl.window_rule({
     },
     float = false,
 })
-
---hl.window_rule({
---    name = "thunar_opacity",
---    match = { class = "thunar" },
---    opacity = "0.85 0.85",
---})
 
 -- --- STARTUP / AUTO-EXEC -----------------------------------------------------------
 
