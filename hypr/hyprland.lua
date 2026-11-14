@@ -5,9 +5,9 @@
 -- |_| |_|   |_|   |_|     |_| \_\ |_____| /_/   \_\ |_| \_||____/
 --
 
----@module 'hl'
+--- @module 'hl'
 
--- --- SYSTEM SETTINGS (AMD) -------------------------------------------------
+-- --- SYSTEM SETTINGS (AMD) --------------------------------------------------------
 
 hl.env("LIBVA_DRIVER_NAME", "radeonsi")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
@@ -22,6 +22,20 @@ hl.monitor({
     position = "0x0",
     scale    = 1
 })
+
+-- --- COLOR MANAGEMENT -------------------------------------------------------------
+
+hl.config({
+    render = {
+        cm_auto_hdr = 0,
+    },
+})
+
+--hl.config({
+--    decoration = {
+--        screen_shader = os.getenv("HOME") .. "/.config/hypr/shaders/vibrance.glsl",
+--    },
+--})
 
 -- --- LOOK & FEEL ------------------------------------------------------------------
 
@@ -39,17 +53,14 @@ hl.config({
     },
 })
 
---hl.config({
---    decoration = {
---        screen_shader = "~/.config/hypr/shaders/vibrance.glsl",
---    },
---})
-
 hl.config({
     decoration = {
         blur = {
             enabled = false,
         },
+        shadow = {
+            enabled = false,
+        }
     },
 })
 
@@ -68,9 +79,6 @@ hl.config({
         enabled = false,
     },
 })
-
-hl.animation({ leaf = "windows", enabled = false })
-hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 5, bezier = "default", style = "fade" })
 
 -- --- INPUT SETTINGS --------------------------------------------------------------
 
@@ -102,6 +110,7 @@ hl.bind(mod .. " + " .. "r", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 -- Terminal & Apps
 
 hl.bind(mod .. " + " .. "Return", hl.dsp.exec_cmd("kitty"))
+hl.bind(mod .. " + " .. "w", hl.dsp.exec_cmd("kitty"))
 hl.bind(mod .. " + " .. "x", hl.dsp.exec_cmd("pkill hyprpicker || hyprpicker -a"))
 hl.bind(mod .. " + " .. "e", hl.dsp.exec_cmd("thunar"))
 hl.bind(mod .. " + " .. "d", hl.dsp.exec_cmd("pkill tofi || tofi-drun --drun-launch=true"))
@@ -113,7 +122,10 @@ hl.bind(mod .. " + " .. "c", hl.dsp.exec_cmd("pkill tofi || cliphist list | tofi
 -- Window Management
 
 hl.bind(mod .. " + " .. "q", hl.dsp.window.close())
-hl.bind(mod .. " + " .. "SHIFT" .. " + " .. "q", hl.dsp.exec_cmd("kill -9 $(hyprctl activewindow | grep 'pid:' | awk '{print $2}')"))
+hl.bind(mod .. " + SHIFT + q", function()
+    local win = hl.get_active_window()
+    if win then hl.exec_cmd("kill -9 " .. win.pid) end
+end)
 hl.bind(mod .. " + " .. "f", hl.dsp.window.fullscreen())
 hl.bind(mod .. " + " .. "space", hl.dsp.window.float())
 
@@ -145,7 +157,10 @@ hl.bind(mod .. " + " .. "v", hl.dsp.workspace.toggle_special("magic"))
 
 -- Move the currently active window into the scratchpad
 
-hl.bind(mod .. " + " .. "SHIFT" .. " + " .. "v", hl.dsp.window.move({ workspace = "special:magic" }, { follow = false }))
+hl.bind(mod .. " + SHIFT + v", hl.dsp.window.move({
+    workspace = "special:magic",
+    follow = true
+}))
 
 for i = 1, 10 do
     local key = i % 10
